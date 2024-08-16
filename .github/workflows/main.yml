@@ -29,15 +29,15 @@ jobs:
 
     - name: Install npm Dependencies
       run: npm install
-      working-directory: ./frontend  # Update with your frontend directory if applicable
+      working-directory: ./my-aem-react-app  # Update with your frontend directory if applicable
 
     - name: Build React Project
       run: npm run build
-      working-directory: ./frontend  # Update with your frontend directory if applicable
+      working-directory: ./my-aem-react-app  # Update with your frontend directory if applicable
 
     - name: Install Maven Dependencies and Build
       run: mvn clean install
-      working-directory: ./backend  # Update with your backend directory if applicable
+      working-directory: ./core  # Update with your backend directory if applicable
 
     - name: Archive Production Artifacts
       if: success()
@@ -45,8 +45,8 @@ jobs:
       with:
         name: build
         path: |
-          ./backend/target/*.jar
-          ./frontend/build
+          ./core/target/*.jar
+          ./my-aem-react-app/build
         retention-days: 5
 
   deploy:
